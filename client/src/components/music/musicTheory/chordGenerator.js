@@ -76,6 +76,12 @@ const major = {
         second: [intervals.majorThird, intervals.perfectFourth, intervals.majorSixth],
         third: [intervals.minorSecond, intervals.perfectFourth, intervals.minorSixth]
     },
+    "dominant 7": {
+        root: [intervals.majorThird, intervals.perfectFifth, intervals.minorSeventh],
+        first: [intervals.minorThird, intervals.flatFifth, intervals.minorSixth],
+        second: [intervals.minorThird, intervals.perfectFourth, intervals.majorSixth],
+        third: [intervals.majorSecond, intervals.perfectFourth, intervals.minorSixth]
+    },
     "add 9" :{
         root: [intervals.majorThird, intervals.perfectFifth, intervals.majorNinth],
         first: [intervals.minorThird, intervals.minorSixth, intervals.minorSeventh],

@@ -18,7 +18,7 @@
       },
       {
           name: "5",
-          extensions: ["none", "add 7", "add 9"]
+          extensions: ["none", "dominant 7", "add 9"]
       },
       {
           name: "6",
@@ -37,6 +37,10 @@
       },
       {
           name: "add 7",
+          inversions: ["root", "first", "second", "third"]
+      },
+      {
+          name: "dominant 7",
           inversions: ["root", "first", "second", "third"]
       },
       {

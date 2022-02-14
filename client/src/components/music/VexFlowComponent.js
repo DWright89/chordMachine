@@ -76,7 +76,7 @@ export function Score({
                 auto_beam: true
             });
         });
-    }, []);
+    }, [staves]);
     //debugger
     return <div ref={container} />;
 }
