@@ -1,5 +1,6 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
+@import "../../../public/stylesheets/colors.scss";
 @include foundation-everything;
 // place global css here
 *,
@@ -8,7 +9,40 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: $gray-blue;
+  color: $not-white
+}
+
+.centered {
+  text-align: center;
+}
+
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+}
+
+.sky-blue {
+  color: $sky-blue;
+}
+
+.gray-blue {
+  color: $gray-blue;
+}
+
+.medium-blue {
+  color: $medium-blue;
+}
+
+.dark-blue {
+  color: $dark-blue;
+}
+
+.navy-blue {
+  color: $navy-blue;
+}
+
+.not-white {
+  color: $not-white
 }
