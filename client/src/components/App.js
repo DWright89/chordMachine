@@ -8,6 +8,7 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import Midi from "./music/Midi.js"
+import ProgressionShow from "./music/ProgressionShow.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,6 +30,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/" component={Midi}/>
+        <Route exact path="/chords/:id" component={ProgressionShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

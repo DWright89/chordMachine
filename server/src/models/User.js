@@ -44,6 +44,7 @@ class User extends uniqueFunc(Model) {
 
     return serializedJson;
   }
+//relation mappings for chord progression here
 }
 
 module.exports = User;
