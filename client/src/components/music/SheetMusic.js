@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Score } from "./VexFlowComponent"
+import  { Score }  from "./VexFlowComponent"
 
 import noteTranslator from "./musicTheory/noteTranslator.js"
 import StaffDisplay from "./StaffDisplay.js"

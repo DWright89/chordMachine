@@ -25,7 +25,9 @@ export function Score({
 
 
     useEffect(() => {
+
         if (rendererRef.current == null) {
+            debugger
             rendererRef.current = new Renderer(
                 container.current,
                 Renderer.Backends.SVG
@@ -36,7 +38,7 @@ export function Score({
         const context = renderer.getContext();
         context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
         const staveWidth = (width - clefAndTimeWidth) / staves.length;
-        //debugger
+        debugger
         let currX = 0;
         staves.forEach((notes, i) => {
             const stave = new Stave(currX, 0, staveWidth);
@@ -47,10 +49,10 @@ export function Score({
                     stave.addKeySignature(keySignature);
                 }
             }
-            //debugger
+            debugger
             currX += stave.getWidth();
             stave.setContext(context).draw();
-            //debugger
+            debugger
             const processedNotes = notes
                 .map((note) => (typeof note === "string" ? { key: note } : note))
                 .map((note) =>
@@ -71,12 +73,18 @@ export function Score({
                             duration: String(duration)
                         })
                 );
-                //debugger
+                debugger
+    //             const staff = document.getElementById("svgContainer");
+    //             while (staff.hasChildNodes()) {
+    //                 debugger
+    //             staff.removeChild(staff.lastChild);
+    // }
             Formatter.FormatAndDraw(context, stave, processedNotes, {
                 auto_beam: true
             });
         });
     }, [staves]);
-    //debugger
+    debugger
     return <div id="svgContainer" ref={container} />;
+        
 }
