@@ -175,7 +175,7 @@ const chordBuilderTwo = (lowest, flavor, extension, inversion) =>{
     } if (inversion === 'third'){
         rootNote = rootNote + rootLookup[2]
     }
-
+  
     const noteArray = chordBuilder(rootNote, finalInversion)
     return noteArray
 }
@@ -187,6 +187,7 @@ const chordBuilder = (lowest, inversionArray) =>{
     for (const interval of inversionArray){
         output.push(lowest + interval)
     }
+    
     return output
 }
 

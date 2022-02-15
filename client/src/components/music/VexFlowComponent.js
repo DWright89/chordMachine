@@ -21,7 +21,7 @@ export function Score({
     const rendererRef = useRef();
 
 
-
+//use callback???
 
 
     useEffect(() => {
@@ -78,5 +78,5 @@ export function Score({
         });
     }, [staves]);
     //debugger
-    return <div ref={container} />;
+    return <div id="svgContainer" ref={container} />;
 }
