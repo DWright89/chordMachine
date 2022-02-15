@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import MIDISounds from "midi-sounds-react";
+
 import ChordForm from "./ChordForm.js";
 import SheetMusic from "./SheetMusic.js"
 import { chordBuilderTwo } from "./musicTheory/chordGenerator"
-
 import noteTranslator from "./musicTheory/noteTranslator.js";
+import ErrorList from "../layout/ErrorList.js"
+import translateServerErrors from "../../services/translateServerErrors.js"
+
 
 const Midi = (props) => {
+  const [errors, setErrors] = useState([])
+  const [localErrors, setLocalErrors] = useState('')
   const [chords, setChords] = useState({
     1: {
       degree: "4",
@@ -35,6 +40,7 @@ const Midi = (props) => {
     }
   })
 
+  const [chordName, setChordName] = useState('')
   const [userNotes, setUserNotes] = useState([])
   const [vexNotes, setVexNotes] = useState([])
 
@@ -113,14 +119,32 @@ const Midi = (props) => {
   }
 
 
-
-
   const playTestInstrument = (noteArray) => {
     ref.current.playChordNow(4, noteArray, 1.5);
   };
 
   const handleFormChanges = (chordNumber, formData) => {
     setChords({ ...chords, [chordNumber]: formData })
+  }
+
+  const handleNameChange = (event) =>{
+    setChordName(event.currentTarget.value)
+  }
+
+  const getRandomName = async () =>{
+    try{
+      const response = await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0")
+      const randomWords = await response.json()
+      const stringWords = randomWords.join(' ')
+      const array = stringWords.split(" ")
+        for (let i = 0; i < array.length; i++) {
+          array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+        }
+      const capitalized = array.join(" ")
+      setChordName(capitalized)
+    }catch(error){
+      console.log("There was an error in the random word API: ", error)
+    }
   }
 
   const sequence = [1, 2, 3, 4]
@@ -132,6 +156,45 @@ const Midi = (props) => {
       playTestInstrument={playTestInstrument}
     />
   })
+
+ 
+  const postChords = async (event) =>{
+    event.preventDefault()
+    if(chordName === ''){
+      return setLocalErrors("You must enter a name.")
+    }
+    const name = chordName
+    const url = chordName.replace(/\s+/g, '').toLowerCase()
+    const chordPayload = { name, url, chords }
+   try{
+     const response = await fetch("/api/v1/chords", {
+       method: "POST",
+       headers: new Headers({
+         "Content-Type": "application/json"
+       }),
+       body: JSON.stringify(chordPayload)
+     })
+     if(!response.ok){
+       if(response.status === 422){
+         const body = await response.json()
+         const newErrors = translateServerErrors(body.errors)
+         return setErrors(newErrors)
+       } else {
+         const errorMessage = `${response.status} (${response.statusText})`
+         const error = new Error(errorMessage)
+         throw(error)
+       }
+     }
+     else {
+       const body = await response.json()
+       console.log("Back in the post request, get the url and redirect here ", body)
+       location.href = `/chords/${url}`
+     }
+   }catch(error){
+     console.error("The post route broke", error)
+   }
+    
+  }
 
 
 
@@ -148,13 +211,36 @@ const Midi = (props) => {
       <SheetMusic 
       notes={vexNotes}/>
       </div>
+      <div className="grid-x grid-margin-x">
+        <div className="cell medium-4" />
+      <div className="cell medium-4">
+        <div className="formErrors centered">
+          <ErrorList errors={errors} />
+        {localErrors}
+        </div>
+
+        <form onSubmit={createUserNotes}>
+        <label htmlFor='name'>Provide a beautiful name for your chords:</label>
+            <input
+              type='text'
+              name='name'
+              id='name'
+              onChange={handleNameChange}
+              value={chordName}
+            />
+              <br/>
+          <button className="centered">Play all four</button>
+        </form>
+              <button onClick={postChords}>Save your chords!</button>
+
+          <button onClick={getRandomName}>Get me a random name</button>
+        </div>
+        <div className="cell medium-4" />
+        </div>
       
       <div className="grid-x grid-margin-x">
         <div className="cell medium-2 formHolder" />
         {formArray}
-        <form onSubmit={createUserNotes}>
-          <button>Play all four</button>
-        </form>
       </div>
       <button onClick={playMelody}>melody</button>
       <button onClick={playTestInstrument}>Playtest</button>
