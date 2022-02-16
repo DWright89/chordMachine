@@ -25,13 +25,16 @@ export function Score({
 
 
     useEffect(() => {
+        console.log('renderer 1:', renderer)
         if (rendererRef.current == null) {
             rendererRef.current = new Renderer(
                 container.current,
                 Renderer.Backends.SVG
             );
         }
+        console.log('renderer 2:', renderer)
         const renderer = rendererRef.current;
+        console.log('renderer 3:', renderer)
         renderer.resize(width, height);
         const context = renderer.getContext();
         context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");

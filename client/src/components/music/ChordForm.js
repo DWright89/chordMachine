@@ -94,12 +94,15 @@ const handleInversionChange = (event) =>{
     <div className="cell medium-2">
         <h6>Create Your own chord</h6>
         <form onSubmit={handleSubmit} >
+            <label>Scale degree:</label>
         <select onChange={handleDegreeChange}>
        {chordOptions}
        </select>
+       <label>Add extensions:</label>
        <select onChange={handleExtensionChange}>
        {extensionOptions}
        </select>
+       <label>Select your inversion:</label>
        <select onChange={handleInversionChange}>
         {inversionOptions}
        </select>

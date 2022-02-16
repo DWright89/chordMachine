@@ -19,7 +19,7 @@ if(chord.flavor){
 }
 
 if(chord.extension){
-  if(!chord.extension === "none"){
+  if(chord.extension !== "none"){
     extension = chord.extension
   }
 }

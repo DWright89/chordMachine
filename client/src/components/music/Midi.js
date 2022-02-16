@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom"
 import MIDISounds from "midi-sounds-react";
 
 import ChordForm from "./ChordForm.js";
@@ -39,6 +40,8 @@ const Midi = (props) => {
       inversion: "root",
     }
   })
+
+  console.log("Line 44 the current user is: ", props.user)
 
   const [chordName, setChordName] = useState('')
   const [userNotes, setUserNotes] = useState([])
@@ -157,7 +160,8 @@ const Midi = (props) => {
     />
   })
 
- 
+
+  
   const postChords = async (event) =>{
     event.preventDefault()
     if(chordName === ''){
@@ -166,37 +170,42 @@ const Midi = (props) => {
     const name = chordName
     const url = chordName.replace(/\s+/g, '').toLowerCase()
     const chordPayload = { name, url, chords }
-   try{
-     const response = await fetch("/api/v1/chords", {
-       method: "POST",
-       headers: new Headers({
-         "Content-Type": "application/json"
-       }),
-       body: JSON.stringify(chordPayload)
-     })
-     if(!response.ok){
-       if(response.status === 422){
-         const body = await response.json()
-         const newErrors = translateServerErrors(body.errors)
-         return setErrors(newErrors)
-       } else {
-         const errorMessage = `${response.status} (${response.statusText})`
-         const error = new Error(errorMessage)
-         throw(error)
-       }
-     }
-     else {
-       const body = await response.json()
-       console.log("Back in the post request, get the url and redirect here ", body)
-       location.href = `/chords/${url}`
-     }
-   }catch(error){
-     console.error("The post route broke", error)
-   }
-    
+    try{
+      const response = await fetch("/api/v1/chords", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(chordPayload)
+      })
+      if(!response.ok){
+        if(response.status === 422){
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+      else {
+        const body = await response.json()
+        console.log("Back in the post request, get the url and redirect here ", body)
+        location.href = `/chords/${url}`
+      }
+    }catch(error){
+      console.error("The post route broke", error)
+    }
   }
-
-
+  
+  
+    let saveButton = <p>If you want to save these chords, you should <Link to="/user-sessions/new">sign in</Link>
+                        or <Link to="/users/new">sign up!</Link></p>
+    if(props.user){
+      saveButton = <button onClick={postChords}>Save your chords!</button>
+    }
+    
 
 
   useEffect(()=>{
@@ -231,9 +240,12 @@ const Midi = (props) => {
               <br/>
           <button className="centered">Play all four</button>
         </form>
-              <button onClick={postChords}>Save your chords!</button>
-
+        <div className="cell small 2">
           <button onClick={getRandomName}>Get me a random name</button>
+              </div>
+              <div className="cell small 2">
+              {saveButton}
+          </div>
         </div>
         <div className="cell medium-4" />
         </div>

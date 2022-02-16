@@ -7,6 +7,7 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute.js";
 import Midi from "./music/Midi.js"
 import ProgressionShow from "./music/ProgressionShow.js";
 
@@ -29,7 +30,9 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/" component={Midi}/>
+      <Route exact path="/">
+        <Midi user={currentUser} />
+       </Route>
         <Route exact path="/chords/:id" component={ProgressionShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

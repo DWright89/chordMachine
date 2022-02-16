@@ -31,7 +31,7 @@ class Chord extends (Model) {
         modelClass: User,
         join: {
           from: "chords.userId",
-          to: "user.id"
+          to: "users.id"
         }
       }
     }

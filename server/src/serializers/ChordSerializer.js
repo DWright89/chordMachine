@@ -39,6 +39,15 @@ class ChordSerializer {
     }
     return output
   }
+
+  static prepareIndex(allChords){
+    let output = []
+    for (const chord of allChords){
+      for(const chord of output){
+     
+      }
+    }
+  }
 }
 
 export default ChordSerializer

@@ -6,9 +6,9 @@ import ChordSerializer from "../../../serializers/ChordSerializer.js"
 
 const chordsRouter = new express.Router()
 
-chordsRouter.get("/", (req, res)=>{
-  console.log("Hit the root router for chords")
-  return res.status(200).json("stuff")
+chordsRouter.get("/", async (req, res)=>{
+  const allChords = await Chord.query().distinct("name", "url")
+  return res.status(200).json(allChords)
 })
 
 chordsRouter.get("/:id", async (req, res)=>{
@@ -21,7 +21,6 @@ chordsRouter.get("/:id", async (req, res)=>{
 chordsRouter.post("/", async (req, res) =>{
   const body = req.body
   const serializedChords = await ChordSerializer.handleUserChords(body, req.user.id)
-  console.log("Serialized chords,  ",serializedChords)
   if(!serializedChords){
     return res.status(423).json({errors: "That name is already in use.  Please choose another."})
   }
@@ -34,7 +33,6 @@ chordsRouter.post("/", async (req, res) =>{
     }
     return res.status(500).json({ errors: error })
   }
-  //handle the code for inserting multiple rows here.  account for validation error return
 })
 
 export default chordsRouter

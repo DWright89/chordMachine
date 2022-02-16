@@ -185,7 +185,12 @@ const chordBuilder = (lowest, inversionArray) =>{
     let output = [lowest-12, lowest]
   
     for (const interval of inversionArray){
-        output.push(lowest + interval)
+        //if a note is higher than G5, subtract an octave.  
+        let newNote = lowest + interval
+        if(newNote > 79){
+            newNote = newNote - 12
+        }
+        output.push(newNote)
     }
     
     return output

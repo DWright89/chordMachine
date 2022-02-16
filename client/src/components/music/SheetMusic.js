@@ -17,10 +17,9 @@ const incrementClick = () =>{
 let score = ""
 
 const eraseNotes = () =>{
-  const element = document.getElementById("music")
-  element.remove()
+  //document.getElementById("svgElement").querySelectorAll('*').forEach(n => n.remove())
+  document.querySelectorAll('.vf-stavenote').forEach(e => e.remove());
 }
-
   const generateNotes= (textNoteArray) =>{
   }
 

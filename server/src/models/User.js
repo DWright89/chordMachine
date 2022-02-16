@@ -44,7 +44,20 @@ class User extends uniqueFunc(Model) {
 
     return serializedJson;
   }
-//relation mappings for chord progression here
+
+  static get relationMappings(){
+    const Chord = require("./Chord.js")
+    return {
+      chords: {
+        relation: Model.HasManyRelation,
+        modelClass: Chord,
+        join: {
+          from: "users.id",
+          to: "chords.userId"
+        }
+      }
+    }
+  }
 }
 
 module.exports = User;
