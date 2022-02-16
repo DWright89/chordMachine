@@ -200,10 +200,10 @@ const Midi = (props) => {
       <p className="App-intro"></p>
 
       <div id="staff" >
-      <SheetMusic 
+      {/* <SheetMusic 
       notes={vexNotes}
       setChordName={setChordName}
-      chordName={chordName}/>
+      chordName={chordName}/> */}
       </div>
       <div className="grid-x grid-margin-x">
         <div className="cell medium-4" />
@@ -239,7 +239,6 @@ const Midi = (props) => {
         <div className="cell medium-2 formHolder" />
         {formArray}
       </div>
-      <button onClick={fixNotes}>Fix Notes</button>
 
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
     </div>
