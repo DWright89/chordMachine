@@ -144,7 +144,6 @@ const rootLookup = (chordDegree) =>{
 }
 
 const flavorLookup = (chordDegree) =>{
-    console.log("flavor", chordDegree)
     if(chordDegree == 1 || chordDegree ==4 || chordDegree==5){
         return 'major'
     } else if(chordDegree == 2|| chordDegree==3 || chordDegree==6){
@@ -184,8 +183,7 @@ const chordBuilder = (lowest, inversionArray) =>{
     
     let output = [lowest-12, lowest]
   
-    for (const interval of inversionArray){
-        //if a note is higher than G5, subtract an octave.  
+    for (const interval of inversionArray){ 
         let newNote = lowest + interval
         if(newNote > 79){
             newNote = newNote - 12
