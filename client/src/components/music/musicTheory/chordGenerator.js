@@ -80,7 +80,7 @@ const major = {
         root: [intervals.majorThird, intervals.perfectFifth, intervals.minorSeventh],
         first: [intervals.minorThird, intervals.flatFifth, intervals.minorSixth],
         second: [intervals.minorThird, intervals.perfectFourth, intervals.majorSixth],
-        third: [intervals.majorSecond, intervals.perfectFourth, intervals.minorSixth]
+        third: [intervals.majorSecond, intervals.flatFifth, intervals.majorSixth]
     },
     "add 9" :{
         root: [intervals.majorThird, intervals.perfectFifth, intervals.majorNinth],
@@ -131,7 +131,7 @@ const dim = {
     "none": {
         root: [intervals.minorThird, intervals.flatFifth],
         first:[intervals.minorThird, intervals.majorSixth],
-        second:[intervals.flatFifth, intervals.minorSeventh]
+        second:[intervals.flatFifth, intervals.majorSixth]
     },
     "inversionRoot" : {
         "none": [intervals.minorThird, intervals.flatFifth]

@@ -47,6 +47,8 @@ const handleDegreeChange = (event) =>{
                     flavor: flavor}
     if(flavor === 'dim'){
         chord.extension = "none"
+    } if(degree !==5 ){
+        chord.extension = "none"
     }
     setMenuState({...menuState,
                 chord})
