@@ -41,23 +41,13 @@ const Midi = (props) => {
     }
   })
 
-  console.log("Line 44 the current user is: ", props.user)
 
   const [chordName, setChordName] = useState('')
   const [userNotes, setUserNotes] = useState([])
   const [vexNotes, setVexNotes] = useState([])
+  const [noteFix, setNoteFix] = useState(true)
 
 
-  const [scale, setScale] = useState({
-    tonic: [60, 64],
-    supertonic: [62, 65],
-    mediant: [64, 67],
-    subdominant: [65, 69],
-    dominant: [67, 71],
-    superdominant: [69, 60],
-    leadingTone: [71, 62],
-    octave: [72, 60],
-  });
 
 
   const ref = useRef(null);
@@ -65,18 +55,10 @@ const Midi = (props) => {
   const bpm = 120;
   const N = (4 * 60) / bpm;
 
-  const playMelody = () => {
-    let when = ref.current.contextTime();
-    let b = 0.1;
-    ref.current.playChordAt(when + b * 0, 4, scale.tonic, 1);
-    ref.current.playChordAt(when + b * 3, 4, scale.supertonic, 1)
-    ref.current.playChordAt(when + b * 6, 4, scale.mediant, 1)
-    ref.current.playChordAt(when + b * 9, 4, scale.subdominant, 1)
-    ref.current.playChordAt(when + b * 12, 4, scale.dominant, 1)
-    ref.current.playChordAt(when + b * 15, 4, scale.superdominant, 1)
-    ref.current.playChordAt(when + b * 18, 4, scale.leadingTone, 1)
-    ref.current.playChordAt(when + b * 21, 4, scale.octave, 1);
-  };
+  const fixNotes = ()=>{
+    document.querySelectorAll('.vf-stavenote').forEach(e => e.remove());
+    setNoteFix(!noteFix)
+  }
 
   const playFour = (chordArray) => {
     let when = ref.current.contextTime()
@@ -118,6 +100,7 @@ const Midi = (props) => {
     }
     const vexNotesArray = translateIntegerNotes(midiNotesArray)
     setUserNotes(midiNotesArray)
+    fixNotes()
     setVexNotes(vexNotesArray)
   }
 
@@ -218,7 +201,9 @@ const Midi = (props) => {
 
       <div id="staff" >
       <SheetMusic 
-      notes={vexNotes}/>
+      notes={vexNotes}
+      setChordName={setChordName}
+      chordName={chordName}/>
       </div>
       <div className="grid-x grid-margin-x">
         <div className="cell medium-4" />
@@ -254,10 +239,7 @@ const Midi = (props) => {
         <div className="cell medium-2 formHolder" />
         {formArray}
       </div>
-      <button onClick={playMelody}>melody</button>
-      <button onClick={playTestInstrument}>Playtest</button>
-
-
+      <button onClick={fixNotes}>Fix Notes</button>
 
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
     </div>

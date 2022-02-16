@@ -19,9 +19,8 @@ let score = ""
 const eraseNotes = () =>{
   //document.getElementById("svgElement").querySelectorAll('*').forEach(n => n.remove())
   document.querySelectorAll('.vf-stavenote').forEach(e => e.remove());
+  props.setChordName(props.chordName)
 }
-  const generateNotes= (textNoteArray) =>{
-  }
 
 //look into minimum margins for the form div
 //put the sheet music component inside a parent div with a fixed height of ~175?
