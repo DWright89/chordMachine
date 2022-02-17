@@ -4,6 +4,8 @@ import MIDISounds from "midi-sounds-react";
 
 import ChordForm from "./ChordForm.js";
 import SheetMusic from "./SheetMusic.js"
+import ChordLookup from "./ChordLookup.js"
+import BigChordStats from "./BigChordStats.js"
 import { chordBuilderTwo } from "./musicTheory/chordGenerator"
 import noteTranslator from "./musicTheory/noteTranslator.js";
 import ErrorList from "../layout/ErrorList.js"
@@ -200,19 +202,21 @@ const Midi = (props) => {
       <p className="App-intro"></p>
 
       <div id="staff" >
-      {/* <SheetMusic 
-      notes={vexNotes}
-      setChordName={setChordName}
-      chordName={chordName}/> */}
+       <SheetMusic 
+        notes={vexNotes}
+        setChordName={setChordName}
+        chordName={chordName}/>
       </div>
       <div className="grid-x grid-margin-x">
-        <div className="cell medium-4" />
+        <div className="cell medium-4">
+          <ChordLookup 
+          chords={chords}/>
+        </div>
       <div className="cell medium-4">
         <div className="formErrors centered">
           <ErrorList errors={errors} />
-        {localErrors}
+          {localErrors}
         </div>
-
         <form onSubmit={createUserNotes}>
         <label htmlFor='name'>Provide a beautiful name for your chords:</label>
             <input
@@ -231,14 +235,17 @@ const Midi = (props) => {
               <div className="cell small 2">
               {saveButton}
           </div>
-        </div>
-        <div className="cell medium-4" />
-        </div>
-      
-      <div className="grid-x grid-margin-x">
-        <div className="cell medium-2 formHolder" />
-        {formArray}
+          <div className="grid-x grid-margin-x">
+      {formArray}
       </div>
+        </div>
+        <div className="cell medium-4">
+          <BigChordStats
+          chords={chords}
+          />
+          </div>
+      
+        </div>
 
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
     </div>

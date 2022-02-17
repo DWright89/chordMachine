@@ -154,6 +154,7 @@ const flavorLookup = (chordDegree) =>{
 }
 
 const chordBuilderTwo = (lowest, flavor, extension, inversion) =>{
+
     let inversions 
     let rootNote = parseInt(lowest)
     if(flavor === "major"){

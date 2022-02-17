@@ -1,8 +1,5 @@
 import React, {useState, useRef} from "react"
 
-import ChordOption from "./ChordOption"
-import ExtensionOption from "./ExtensionOption"
-import InversionOption from "./InversionOption"
 import { chordData, inversionData } from "./musicTheory/chordData"
 import { rootLookup, flavorLookup, chordBuilderTwo } from "./musicTheory/chordGenerator"
 
@@ -16,7 +13,6 @@ const ChordForm = props =>{
             extension: "none",
             inversion: "root",       }
     })
-//debugger
    const chords = ["I", "ii", "iii", "IV", "V", "vi", "vii"]
 
 
@@ -83,28 +79,28 @@ const handleInversionChange = (event) =>{
     const chordOptions = chords.map((chord, index) => {
         const degree = index+1
         return(
-            <ChordOption
+            <option
             key={index}
-            chord={chord}
-            degree={degree}
-            />
+            value={degree}
+            > {chord}
+            </option>
         )
     })
 
     
     return(
-    <div className="cell medium-2">
+    <div className="cell medium-3">
         <h6>Create Your own chord</h6>
         <form onSubmit={handleSubmit} >
             <label>Scale degree:</label>
         <select onChange={handleDegreeChange}>
        {chordOptions}
        </select>
-       <label>Add extensions:</label>
+       <label>Extensions:</label>
        <select onChange={handleExtensionChange}>
        {extensionOptions}
        </select>
-       <label>Select your inversion:</label>
+       <label>Inversion:</label>
        <select onChange={handleInversionChange}>
         {inversionOptions}
        </select>

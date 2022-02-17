@@ -1,28 +1,37 @@
 import got from "got"
-import dotenv from 'dotenv'
-
-
-
-dotenv.config()
-const apiKey = process.env.HOOKTHEORY_KEY
 
 class HookTheoryClient {
-  static async twoChords(key, chordOne, chordTwo){
+  static async queryChords(key, degreeArray){
+    const unique = []
+    degreeArray.forEach((number)=>{
+      if(!unique.includes(number)){
+        unique.push(number)
+      }
+    })
+    const queryString = unique.join()
+    console.log("Should have duplicated removed ", queryString)
+    
     const url = "https://api.hooktheory.com/v1/trends/nodes?cp="
    try{
-    const response = await got(`${url}${chordOne},${chordTwo}`, 
+    const response = await got(`${url}${queryString}`, 
     {
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${key}`
       }
     })
-   
-    const chords = response.body
-    return chords
+    const allChords = JSON.parse(response.body)
+    const topThree = allChords.slice(0, 3)
+    return topThree
    }catch(error){
      return { error }
    }
+  }
+
+  static testPost(degreeArray){
+    const queryString = degreeArray.join()
+    const url = "https://api.hooktheory.com/v1/trends/nodes?cp="
+    console.log(`${url}${queryString}`)
+    return true
   }
 
 }

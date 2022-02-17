@@ -6,15 +6,13 @@ const theoryRouter = new express.Router()
 dotenv.config()
 const apiKey = process.env.HOOKTHEORY_KEY
 
-theoryRouter.get("/", async (req, res) =>{
-console.log(apiKey)
-try{
-  const data = await HookTheoryClient.twoChords(apiKey, 4, 5)
- 
-  console.log("Inside the got thing ", data)
-  return res.status(200).json(data)
-}catch(error){
-  return res.status(401).json({errors: error})
-}
+theoryRouter.post("/lookup", async (req, res) =>{
+  console.log("Payload on the back, ", req.body)
+  try{
+    const chords = await HookTheoryClient.queryChords(apiKey, req.body)
+    return res.status(200).json(chords)
+  } catch(error) {
+    return res.status(401).json({errors: error})
+  }
 })
 export default theoryRouter

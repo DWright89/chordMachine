@@ -1,29 +1,21 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Score } from "./VexFlowComponent"
 
-import noteTranslator from "./musicTheory/noteTranslator.js"
-import StaffDisplay from "./StaffDisplay.js"
+
 
 const SheetMusic = (props) => {
 const [vexNotes, setVexNotes] = useState([])
 const [clicked, setClicked] = useState(1)
 const renderCount = useRef(1)
 
-const incrementClick = () =>{
-  setClicked(clicked +1)
-}
-
 
 let score = ""
 
 const eraseNotes = () =>{
-  //document.getElementById("svgElement").querySelectorAll('*').forEach(n => n.remove())
   document.querySelectorAll('.vf-stavenote').forEach(e => e.remove());
   props.setChordName(props.chordName)
 }
 
-//look into minimum margins for the form div
-//put the sheet music component inside a parent div with a fixed height of ~175?
 
 
 if(props.notes.length > 0){
@@ -59,7 +51,7 @@ if(props.notes.length > 0){
   useEffect(()=>{
     setVexNotes(props.notes)
   },[vexNotes])
-//debugger
+
   return (
     <div id="music" className="centered">
       {score}
