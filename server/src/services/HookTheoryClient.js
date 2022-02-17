@@ -26,14 +26,6 @@ class HookTheoryClient {
      return { error }
    }
   }
-
-  static testPost(degreeArray){
-    const queryString = degreeArray.join()
-    const url = "https://api.hooktheory.com/v1/trends/nodes?cp="
-    console.log(`${url}${queryString}`)
-    return true
-  }
-
 }
 
 export default HookTheoryClient

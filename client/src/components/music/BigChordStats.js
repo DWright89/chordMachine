@@ -20,11 +20,6 @@ const BigChordStats = (props) =>{
 
   let statList
 
-
-  // noteTranslator[note].substring(0,1)
-  //const chordBuilderTwo = (lowest, flavor, extension, inversion)
-
-
   const generateStats = (chordArray) =>{
     let output = []
    for (const [key, value] of Object.entries(chordArray)){
@@ -46,7 +41,7 @@ const BigChordStats = (props) =>{
     if(value.extension === "minor 9"){
       flavor = ''
     }
-    
+
     if(value.inversion === 'root'){
       inversion = "root position"
     } if (value.inversion === 'first'){
@@ -66,7 +61,6 @@ const BigChordStats = (props) =>{
 
 
 if(chords !==  null){
-  //debugger
   statList = generateStats(chords)
 }
 

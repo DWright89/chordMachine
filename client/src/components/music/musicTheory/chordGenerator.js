@@ -191,7 +191,6 @@ const chordBuilder = (lowest, inversionArray) =>{
         }
         output.push(newNote)
     }
-    
     return output
 }
 

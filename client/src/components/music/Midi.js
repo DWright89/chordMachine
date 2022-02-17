@@ -87,7 +87,6 @@ const Midi = (props) => {
     let output = []
     for (const [key, value] of Object.entries(chords)) {
       output.push(chordBuilderTwo(value.root, value.flavor, value.extension, value.inversion))
-      //eventually grab the degree here to send to the API?
     }
     setUserNotes(output)
     playFour(output)
@@ -98,7 +97,6 @@ const Midi = (props) => {
     
     for (const [key, value] of Object.entries(chords)) {
       midiNotesArray.push(chordBuilderTwo(value.root, value.flavor, value.extension, value.inversion))
-      //eventually grab the degree here to send to the API?
     }
     const vexNotesArray = translateIntegerNotes(midiNotesArray)
     setUserNotes(midiNotesArray)
@@ -200,7 +198,6 @@ const Midi = (props) => {
   return (
     <div className="app">
       <p className="App-intro"></p>
-
       <div id="staff" >
        <SheetMusic 
         notes={vexNotes}
@@ -217,36 +214,34 @@ const Midi = (props) => {
           <ErrorList errors={errors} />
           {localErrors}
         </div>
-        <form onSubmit={createUserNotes}>
-        <label htmlFor='name'>Provide a beautiful name for your chords:</label>
-            <input
-              type='text'
-              name='name'
-              id='name'
-              onChange={handleNameChange}
-              value={chordName}
-            />
+          <form onSubmit={createUserNotes}>
+            <label htmlFor='name'>Provide a beautiful name for your chords:</label>
+              <input
+                type='text'
+                name='name'
+                id='name'
+                onChange={handleNameChange}
+                value={chordName}
+              />
               <br/>
-          <button className="centered">Play all four</button>
-        </form>
-        <div className="cell small 2">
-          <button onClick={getRandomName}>Get me a random name</button>
-              </div>
-              <div className="cell small 2">
-              {saveButton}
+            <button className="centered">Play all four</button>
+          </form>
+          <div className="cell small 2">
+            <button onClick={getRandomName}>Get me a random name</button>
+          </div>
+          <div className="cell small 2">
+            {saveButton}
           </div>
           <div className="grid-x grid-margin-x">
-      {formArray}
-      </div>
+            {formArray}
+          </div>
         </div>
         <div className="cell medium-4">
           <BigChordStats
           chords={chords}
           />
           </div>
-      
         </div>
-
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
     </div>
   );

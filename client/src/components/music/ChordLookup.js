@@ -1,11 +1,3 @@
-//sits on the right and will have API queries for existing chords with statistical information
-
-//will have dropdown to get info on first two, last two, and all four chords, and will show the child paths and 
-//statistical info accordingly.  Each API return will be saved in state and overwritten with the new one
-
-//this component will need the DEGREE information from state.
-//will post to /api/v1/notes/lookup
-
 import React, { useState, useEffect } from "react"
 
 import ChordReport from "./ChordReport.js"
@@ -19,8 +11,6 @@ const ChordLookup = (props) =>{
   const dropdownOptions = ["Tell me about the first two",
                            "Tell me about the middle two", 
                            "Tell me about all four"]
-
-
 
   const lookupOptions = dropdownOptions.map((option, index) =>{
     return(
@@ -79,7 +69,6 @@ const ChordLookup = (props) =>{
   useEffect(()=>{
   
  }, [formState, responseState])  
- //wire up use state for the return?
 
   return(
     <div>
