@@ -1,6 +1,6 @@
 import got from "got"
 
-class HookTheoryClient {
+class hookTheoryClient {
   static async queryChords(key, degreeArray){
     const unique = []
     degreeArray.forEach((number)=>{
@@ -28,4 +28,4 @@ class HookTheoryClient {
   }
 }
 
-export default HookTheoryClient
+export default hookTheoryClient
