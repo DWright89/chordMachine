@@ -9,7 +9,6 @@ class hookTheoryClient {
       }
     })
     const queryString = unique.join()
-    console.log("Should have duplicated removed ", queryString)
     
     const url = "https://api.hooktheory.com/v1/trends/nodes?cp="
    try{

@@ -41,11 +41,8 @@ const handleDegreeChange = (event) =>{
                     degree: event.currentTarget.value,
                     root: root,
                     flavor: flavor}
-    if(flavor === 'dim'){
-        chord.extension = "none"
-    } if(degree !==5 ){
-        chord.extension = "none"
-    }
+    chord.extension = "none"
+    chord.inversion = "root"
     setMenuState({...menuState,
                 chord})
     props.handleFormChanges(props.position, chord)

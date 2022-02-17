@@ -64,8 +64,6 @@ if(chords !==  null){
   statList = generateStats(chords)
 }
 
-console.log("Stat list? ", statList)
-
 useEffect(()=>{
   handleChordChange()
 }, [props])

@@ -25,7 +25,6 @@ const ChordLookup = (props) =>{
   const handleSubmit = async (event) =>{
     event.preventDefault()
     const payload = deriveFormPayload(formState)
-    console.log("payload on the front ", payload)
    try{
      const response = await fetch("/api/v1/theory/lookup",{
         method: "POST",
