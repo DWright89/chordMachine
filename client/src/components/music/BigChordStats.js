@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 import nameLookup from "./musicTheory/nameLookup.js"
-import { chordBuilderTwo } from "./musicTheory/chordGenerator.js"
+import { chordBuilderTwo, rootLookup } from "./musicTheory/chordGenerator.js"
 import noteTranslator from "./musicTheory/noteTranslator"
 
 const BigChordStats = (props) =>{
@@ -23,6 +23,9 @@ const BigChordStats = (props) =>{
   const generateStats = (chordArray) =>{
     let output = []
    for (const [key, value] of Object.entries(chordArray)){
+     if(!value.root){
+       value.root = rootLookup(value.degree)
+     }
      const integerNotes = chordBuilderTwo(value.root, value.flavor, value.extension, "root")
      const textNotes = translateIntegerNotesStats(integerNotes).join(', ')
     const name = nameLookup[value.degree]

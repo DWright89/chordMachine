@@ -25,6 +25,17 @@ class hookTheoryClient {
      return { error }
    }
   }
+
+  static async getSongs(chordsFromDatabase){
+    
+    let chordDegrees = []
+    for (const chord of chordsFromDatabase){
+      chordDegrees.push(chord.degree)
+    }
+    const queryString = chordDegrees.join()
+    const url = "https://api.hooktheory.com/v1/trends/songs?cp="
+    return true
+  }
 }
 
 export default hookTheoryClient

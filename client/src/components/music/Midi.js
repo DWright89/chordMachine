@@ -209,6 +209,8 @@ const Midi = (props) => {
           <ChordLookup 
           chords={chords}/>
         </div>
+
+
       <div className="cell medium-4">
         <div className="formErrors centered">
           <ErrorList errors={errors} />
@@ -236,6 +238,9 @@ const Midi = (props) => {
             {formArray}
           </div>
         </div>
+
+
+        
         <div className="cell medium-4">
           <BigChordStats
           chords={chords}

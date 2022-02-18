@@ -1,8 +1,13 @@
 import express from "express"
+import dotenv from "dotenv"
 import { ValidationError } from "objection"
 
 import { Chord } from "../../../models/index.js"
 import ChordSerializer from "../../../serializers/ChordSerializer.js"
+import hookTheoryClient from "../../../services/hookTheoryClient.js"
+
+dotenv.config()
+const apiKey = process.env.HOOKTHEORY_KEY
 
 const chordsRouter = new express.Router()
 
@@ -15,6 +20,7 @@ chordsRouter.get("/:id", async (req, res)=>{
   const id = req.params.id
   const response = await Chord.query().where("url", "=", id).orderBy("order")
   const chords = ChordSerializer.getDetails(response)
+  const songsEventually = hookTheoryClient.getSongs(apiKey, chords)
   return res.status(200).json({chords})
 })
 

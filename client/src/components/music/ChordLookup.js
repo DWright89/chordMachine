@@ -73,7 +73,7 @@ const ChordLookup = (props) =>{
     <div>
       <p>Help me pick my next chord...</p>
       <div className="grid-x grid-margin-x">
-      <div className="cell small-6">
+      <div className="cell small-7">
         <form onSubmit={handleSubmit}>
           <select onChange={handleChange}>
             {lookupOptions}

@@ -4,6 +4,7 @@ import MIDISounds from "midi-sounds-react";
 
 import SheetMusic from "./SheetMusic.js"
 import { intervals, major, minor, dim, chordBuilderTwo, rootLookup, flavorLookup } from "./musicTheory/chordGenerator"
+import BigChordStats from "./BigChordStats.js";
 import noteTranslator from "./musicTheory/noteTranslator.js"
 import ChordStats from "./ChordStats.js"
 
@@ -91,37 +92,48 @@ useEffect(()=>{
 
   return(
     <div className="show">
-    <div className="centered">
-    <h3>{title}</h3>
-    <div id="staff" >
-      <SheetMusic 
-      notes={vexNotes}/>
+      <div className="centered">
+        <h3>{title}</h3>
+          <div id="staff" >
+            <SheetMusic 
+            notes={vexNotes}/>
+          </div>
+        <button onClick={playFour}>Hear all four</button>
       </div>
-      <button onClick={playFour}>Hear all four</button>
-      </div>
-      <div className="grid-x grid-margin-x">
-      <div className="cell medium-2 formHolder" />
-      <div className="cell medium-2">
-      <button value="0" onClick={playOne}>Hear this chord!</button>
-      <ChordStats 
-      chord={chords[0]}/>
-      </div>
-      <div className="cell medium-2">
-        <button value="1" onClick={playOne}>Hear this chord!</button>
-        <ChordStats 
-        chord={chords[1]}/>
-      </div>
-      <div className="cell medium-2">
-      <button value="2" onClick={playOne}>Hear this chord!</button>
-      <ChordStats 
-      chord={chords[2]}/>
-      </div>
-      <div className="cell medium-2">
-      <button value="3" onClick={playOne}>Hear this chord!</button>
-      <ChordStats 
-      chord={chords[3]}/>
-      </div>
+        <div className="grid-x grid-margin-x">
+        <div className="cell medium-4 formHolder">
+          <p>API return here!</p>
+          </div>
+        <div className="cell medium-4">
+          <div className="grid-x grid-margin-x">
+        <div className="cell medium-3">
+          <button value="0" onClick={playOne}>Hear this chord!</button>
+            <ChordStats 
+            chord={chords[0]}/>
+        </div>
+        <div className="cell medium-3">
+          <button value="1" onClick={playOne}>Hear this chord!</button>
+            <ChordStats 
+            chord={chords[1]}/>
+        </div>
+        <div className="cell medium-3">
+          <button value="2" onClick={playOne}>Hear this chord!</button>
+            <ChordStats 
+            chord={chords[2]}/>
+        </div>
+        <div className="cell medium-3">
+          <button value="3" onClick={playOne}>Hear this chord!</button>
+            <ChordStats 
+            chord={chords[3]}/>
+        </div>
+        </div>
 
+      </div>
+        <div className="cell medium-4 formHolder">
+          <BigChordStats
+          chords={chords}
+          />
+          </div>
       </div>
       <div className="centered">
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
