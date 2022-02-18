@@ -199,10 +199,10 @@ const Midi = (props) => {
     <div className="app">
       <p className="App-intro"></p>
       <div id="staff" >
-       {/* <SheetMusic 
+       <SheetMusic 
         notes={vexNotes}
         setChordName={setChordName}
-        chordName={chordName}/> */}
+        chordName={chordName}/>
       </div>
       <div className="grid-x grid-margin-x">
         <div className="cell medium-4">
