@@ -1,4 +1,4 @@
-import got from "Got"
+import got from "got"
 
 class hookTheoryClient {
   static async queryChords(key, degreeArray){
