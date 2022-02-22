@@ -7,6 +7,7 @@ import { intervals, major, minor, dim, chordBuilderTwo, rootLookup, flavorLookup
 import BigChordStats from "./BigChordStats.js";
 import noteTranslator from "./musicTheory/noteTranslator.js"
 import ChordStats from "./ChordStats.js"
+import SongTile from "./SongTile.js";
 
 const ProgressionShow = (props) =>{
   const params = useParams()
@@ -14,11 +15,13 @@ const ProgressionShow = (props) =>{
   const [chords, setChords] = useState([])
   const [notes, setNotes] = useState([])
   const [vexNotes, setVexNotes] = useState([])
+  const [songList, setSongList] = useState([])
 
   const ref = useRef(null);
 
   const bpm = 120;
   const N = (4 * 60) / bpm;
+
 
   const playOne = (event) =>{
     event.preventDefault()
@@ -65,10 +68,19 @@ const ProgressionShow = (props) =>{
     return true
   }
 
+  // let songTiles = ''
+
+  // const generateSongTiles = (songs) =>{
+  //   return songs.map((song, index)=>{
+  //     <SongTile 
+  //     key={index}
+  //     song={song}
+  //     />
+  //   })
+  // }
 
   const getChords = async() =>{
     const progressionId = params.id
-    console.log("The fetch started")
     try {
       const response = await fetch(`/api/v1/chords/${progressionId}`)
       if (!response.ok) {
@@ -76,14 +88,29 @@ const ProgressionShow = (props) =>{
         const error = new Error(errorMessage)
         throw (error)
       } const body = await response.json()
+        //debugger
+        console.log("Return from fetch: ", body)
       handleChordData(body.chords)
       setTitle(body.chords[0].name)
-      //serialize chords in backend and get the flavor?
+
+      setSongList(body.songs)
+      console.log("Why no songs?? ", body)
       return setChords(body.chords)
     }catch(error){ 
       console.error(error)
     }
   }
+
+
+  
+
+
+  const dummyChord =   {
+		"artist": "Alligatoah",
+		"song": "Willst Du",
+		"section": "Chorus Lead-Out",
+		"url": "http://www.hooktheory.com/theorytab/view/alligatoah/willst-du#chorus-lead-out"
+	}
 
 useEffect(()=>{
   getChords()
@@ -94,47 +121,52 @@ useEffect(()=>{
     <div className="show">
       <div className="centered">
         <h3>{title}</h3>
+    </div>
+      <div className="grid-x grid-margin-x">
+        <div className="cell medium-4">
+          <p>Here are some sections of songs that include these chords:</p>
+        <SongTile 
+          chord={dummyChord}
+          />
+          </div>
+
+            <div className="cell medium-4">
           <div id="staff" >
             <SheetMusic 
             notes={vexNotes}/>
           </div>
         <button onClick={playFour}>Hear all four</button>
-      </div>
-        <div className="grid-x grid-margin-x">
-        <div className="cell medium-4 formHolder">
-          <p>API return here!</p>
-          </div>
-        <div className="cell medium-4">
-          <div className="grid-x grid-margin-x">
+       
+         <div className="grid-x grid-margin-x">
         <div className="cell medium-3">
           <button value="0" onClick={playOne}>Hear this chord!</button>
-            <ChordStats 
-            chord={chords[0]}/>
+            
         </div>
         <div className="cell medium-3">
           <button value="1" onClick={playOne}>Hear this chord!</button>
-            <ChordStats 
-            chord={chords[1]}/>
+          
         </div>
         <div className="cell medium-3">
           <button value="2" onClick={playOne}>Hear this chord!</button>
-            <ChordStats 
-            chord={chords[2]}/>
+          
         </div>
         <div className="cell medium-3">
           <button value="3" onClick={playOne}>Hear this chord!</button>
-            <ChordStats 
-            chord={chords[3]}/>
-        </div>
+           
+       
+            </div>
+            </div>
         </div>
 
-      </div>
-        <div className="cell medium-4 formHolder">
+        <div className="cell medium-4">
           <BigChordStats
           chords={chords}
           />
-          </div>
+        
+          <p>This is where I'll put the exact returns for all four chords</p>
       </div>
+          </div>
+     
       <div className="centered">
       <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
       </div>

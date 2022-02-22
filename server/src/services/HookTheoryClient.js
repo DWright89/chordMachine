@@ -26,15 +26,35 @@ class hookTheoryClient {
    }
   }
 
-  static async getSongs(chordsFromDatabase){
-    
+  static async getSongs(key,chordsFromDatabase){
+   
     let chordDegrees = []
     for (const chord of chordsFromDatabase){
       chordDegrees.push(chord.degree)
     }
-    const queryString = chordDegrees.join()
+
+    const unique = []
+    chordDegrees.forEach((number)=>{
+      if(!unique.includes(number)){
+        unique.push(number)
+      }
+    })
+    
+    const queryString = unique.join()
     const url = "https://api.hooktheory.com/v1/trends/songs?cp="
-    return true
+   
+    try{
+      const response = await got(`${url}${queryString}`, 
+    {
+      headers: {
+        "Authorization": `Bearer ${key}`
+      }
+    })
+    const allSongs = JSON.parse(response.body)
+    return allSongs
+    }catch(error){
+      return {error }
+    }
   }
 }
 

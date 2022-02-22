@@ -55,8 +55,6 @@ if(props.notes.length > 0){
   return (
     <div id="music" className="centered">
       {score}
-      <button onClick={eraseNotes}>Click</button>
-   
     </div>
   )
 }
