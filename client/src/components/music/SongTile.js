@@ -1,7 +1,7 @@
 import React from "react"
 
 const SongTile = (props) =>{
-const {artist, song, section, url} = props.chord
+const {artist, song, section, url} = props.song
 
   return(
   <div>
@@ -10,7 +10,6 @@ const {artist, song, section, url} = props.chord
       <li><a href={url}>Check it out on Hooktheory.</a></li>
     </ul>
   </div>
-  
   )
 }
 

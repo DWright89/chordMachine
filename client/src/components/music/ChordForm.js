@@ -87,7 +87,6 @@ const handleInversionChange = (event) =>{
     
     return(
     <div className="cell medium-3">
-        <h6>Create Your own chord</h6>
         <form onSubmit={handleSubmit} >
             <label>Scale degree:</label>
         <select onChange={handleDegreeChange}>

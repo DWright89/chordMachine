@@ -24,9 +24,15 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">App</li>
+          <li className="menu-text">Chordmachine</li>
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/chords/new">Create chords</Link>
+          </li>
+          <li>
+            <Link to="/all">View all</Link>
           </li>
         </ul>
       </div>

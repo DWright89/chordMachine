@@ -73,7 +73,7 @@ useEffect(()=>{
 
   return(
     <div>
-      <p>Here's what you're looking at:</p>
+      <p>If you are unfamiliar with musical notation:</p>
       <ol>
         {statList}
       </ol>

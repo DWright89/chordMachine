@@ -78,7 +78,7 @@ const ChordLookup = (props) =>{
           <select onChange={handleChange}>
             {lookupOptions}
           </select>
-          <button>SLAM IT</button>
+          <button>Help me!</button>
         </form>
         </div>
         </div>

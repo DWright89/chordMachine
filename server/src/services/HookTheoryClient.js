@@ -51,6 +51,7 @@ class hookTheoryClient {
       }
     })
     const allSongs = JSON.parse(response.body)
+    //console.log("All songs in client: ", allSongs)
     return allSongs
     }catch(error){
       return {error }

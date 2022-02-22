@@ -25,7 +25,6 @@ const ProgressionShow = (props) =>{
 
   const playOne = (event) =>{
     event.preventDefault()
-    // debugger
     ref.current.playChordNow(4, notes[event.currentTarget.value], 1.5)
   }
 
@@ -68,16 +67,23 @@ const ProgressionShow = (props) =>{
     return true
   }
 
-  // let songTiles = ''
+  let songTiles = ''
 
-  // const generateSongTiles = (songs) =>{
-  //   return songs.map((song, index)=>{
-  //     <SongTile 
-  //     key={index}
-  //     song={song}
-  //     />
-  //   })
-  // }
+  const generateSongTiles = (songs) =>{
+    let output = songs.map((song, index)=>{
+      return (
+        <SongTile 
+        key={index}
+        song={song}
+        />
+      )
+    })
+    return output
+  }
+
+  if (songList.length > 1){
+    songTiles = generateSongTiles(songList)
+  }
 
   const getChords = async() =>{
     const progressionId = params.id
@@ -88,29 +94,15 @@ const ProgressionShow = (props) =>{
         const error = new Error(errorMessage)
         throw (error)
       } const body = await response.json()
-        //debugger
-        console.log("Return from fetch: ", body)
       handleChordData(body.chords)
       setTitle(body.chords[0].name)
-
       setSongList(body.songs)
-      console.log("Why no songs?? ", body)
       return setChords(body.chords)
     }catch(error){ 
       console.error(error)
     }
   }
 
-
-  
-
-
-  const dummyChord =   {
-		"artist": "Alligatoah",
-		"song": "Willst Du",
-		"section": "Chorus Lead-Out",
-		"url": "http://www.hooktheory.com/theorytab/view/alligatoah/willst-du#chorus-lead-out"
-	}
 
 useEffect(()=>{
   getChords()
@@ -119,23 +111,21 @@ useEffect(()=>{
 
   return(
     <div className="show">
-      <div className="centered">
-        <h3>{title}</h3>
+      <div className="centered title">
+        <h2>{title}</h2>
     </div>
       <div className="grid-x grid-margin-x">
-        <div className="cell medium-4">
+        <div className="cell medium-4 songList">
           <p>Here are some sections of songs that include these chords:</p>
-        <SongTile 
-          chord={dummyChord}
-          />
+          {songTiles}
           </div>
 
-            <div className="cell medium-4">
+            <div className="cell medium-4 centered">
           <div id="staff" >
             <SheetMusic 
             notes={vexNotes}/>
           </div>
-        <button onClick={playFour}>Hear all four</button>
+        <button className="centered" onClick={playFour}>Hear all four</button>
        
          <div className="grid-x grid-margin-x">
         <div className="cell medium-3">
@@ -162,8 +152,6 @@ useEffect(()=>{
           <BigChordStats
           chords={chords}
           />
-        
-          <p>This is where I'll put the exact returns for all four chords</p>
       </div>
           </div>
      

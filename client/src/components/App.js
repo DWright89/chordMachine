@@ -10,6 +10,8 @@ import TopBar from "./layout/TopBar";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute.js";
 import Midi from "./music/Midi.js"
 import ProgressionShow from "./music/ProgressionShow.js";
+import IndexPage from "./music/IndexPage.js";
+import LandingPage from "./music/LandingPage.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,9 +32,11 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-      <Route exact path="/">
+        <Route exact path="/" component={LandingPage} />
+      <Route exact path="/chords/new">
         <Midi user={currentUser} />
        </Route>
+       <Route exact path="/all" component={IndexPage} />
         <Route exact path="/chords/:id" component={ProgressionShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

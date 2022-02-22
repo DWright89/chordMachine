@@ -17,14 +17,14 @@ chordsRouter.get("/", async (req, res)=>{
 })
 
 chordsRouter.get("/:id", async (req, res)=>{
+  let data = {}
   const id = req.params.id
   const response = await Chord.query().where("url", "=", id).orderBy("order")
-  const chords = ChordSerializer.getDetails(response)
+  let chords = ChordSerializer.getDetails(response)
   const songs = await hookTheoryClient.getSongs(apiKey, chords)
-  console.log("This should be songs ", songs)
-  chords.songs = songs
-  console.log("Why is it here and not there: ", chords)
-  return res.status(200).json({chords})
+  data.chords = chords
+  data.songs = songs
+  return res.status(200).json(data)
 })
 
 chordsRouter.post("/", async (req, res) =>{
