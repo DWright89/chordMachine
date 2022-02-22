@@ -4,7 +4,7 @@ import { ValidationError } from "objection"
 
 import { Chord } from "../../../models/index.js"
 import ChordSerializer from "../../../serializers/ChordSerializer.js"
-import hookTheoryClient from "../../../services/hookTheoryClient.js"
+import hookTheoryClient from "../../../services/HookTheoryClient.js"
 
 dotenv.config()
 const apiKey = process.env.HOOKTHEORY_KEY
