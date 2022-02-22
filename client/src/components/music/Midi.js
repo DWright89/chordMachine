@@ -174,8 +174,8 @@ const Midi = (props) => {
       }
       else {
         const body = await response.json()
-        console.log("Back in the post request, get the url and redirect here ", body)
-        location.href = `/chords/${url}`
+        const destination = url.replace(/[^a-zA-Z0-9-_]/g, '')
+        location.href = `/chords/${destination}`
       }
     }catch(error){
       console.error("The post route broke", error)

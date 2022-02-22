@@ -9,7 +9,7 @@ const LandingPage = (props) =>{
       <p className="fade-in-text-2 text-2">An app for creating and learning about chord progressions</p>
 
       <p className="fade-in-text-2 text-3"><Link to="/chords/new">Get started</Link></p>
-      <img src="https://i.imgur.com/Cp1IT0m.jpeg"></img>
+      <img src="https://i.imgur.com/TBVB0eB.jpg"></img>
     </div>
   )
 }

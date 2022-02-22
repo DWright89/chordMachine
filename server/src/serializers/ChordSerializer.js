@@ -24,6 +24,7 @@ class ChordSerializer {
     if(existsAlready.length > 1){
       return false
     }
+    
     let output = []
     const allowedAttributes = ["degree", "extension", "inversion"]
     for (const [key, value] of Object.entries(chordPayload.chords)){
@@ -33,7 +34,7 @@ class ChordSerializer {
         }
         preparedChord.order = key
         preparedChord.name = chordPayload.name
-        preparedChord.url = chordPayload.url
+        preparedChord.url = chordPayload.url.replace(/[^a-zA-Z0-9-_]/g, '');
         preparedChord.userId = currentUserId
         output.push(preparedChord)
     }
@@ -42,11 +43,11 @@ class ChordSerializer {
 
   static prepareIndex(allChords){
     let output = []
-    for (const chord of allChords){
-      for(const chord of output){
-     
-      }
-    }
+    allChords.forEach((chord)=>{
+      chord.url = encodeURI(chord.url)
+      output.push(chord)
+    })
+    return output
   }
 }
 

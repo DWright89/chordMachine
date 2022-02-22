@@ -13,7 +13,8 @@ const chordsRouter = new express.Router()
 
 chordsRouter.get("/", async (req, res)=>{
   const allChords = await Chord.query().distinct("name", "url")
-  return res.status(200).json(allChords)
+  const cleanedChords = ChordSerializer.prepareIndex(allChords)
+  return res.status(200).json(cleanedChords)
 })
 
 chordsRouter.get("/:id", async (req, res)=>{
