@@ -186,7 +186,7 @@ const chordBuilder = (lowest, inversionArray) =>{
   
     for (const interval of inversionArray){ 
         let newNote = lowest + interval
-        if(newNote > 79){
+        if(newNote > 84){
             newNote = newNote - 12
         }
         output.push(newNote)

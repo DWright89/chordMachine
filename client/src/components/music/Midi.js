@@ -66,9 +66,9 @@ const Midi = (props) => {
     let when = ref.current.contextTime()
     let b = 0.1
     ref.current.playChordAt(when + b * 0, 4, chordArray[0], 1)
-    ref.current.playChordAt(when + b * 6, 4, chordArray[1], 1)
-    ref.current.playChordAt(when + b * 12, 4, chordArray[2], 1)
-    ref.current.playChordAt(when + b * 18, 4, chordArray[3], 1)
+    ref.current.playChordAt(when + b * 7, 4, chordArray[1], 1)
+    ref.current.playChordAt(when + b * 14, 4, chordArray[2], 1)
+    ref.current.playChordAt(when + b * 21, 4, chordArray[3], 1)
   }
 
   const translateIntegerNotes = (chordArray) =>{
@@ -247,7 +247,9 @@ const Midi = (props) => {
           />
           </div>
         </div>
+        <div className="centered">
       <MIDISounds className="centered" ref={ref} appElementName="app" instruments={[3, 4]} />
+      </div>
     </div>
   );
 };
