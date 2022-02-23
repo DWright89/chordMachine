@@ -32,9 +32,9 @@ const ProgressionShow = (props) =>{
     let when = ref.current.contextTime()
     let b = 0.1
     ref.current.playChordAt(when + b * 0, 4, notes[0], 1)
-    ref.current.playChordAt(when + b * 6, 4, notes[1], 1)
-    ref.current.playChordAt(when + b * 12, 4, notes[2], 1)
-    ref.current.playChordAt(when + b * 18, 4, notes[3], 1)
+    ref.current.playChordAt(when + b * 7, 4, notes[1], 1)
+    ref.current.playChordAt(when + b * 14, 4, notes[2], 1)
+    ref.current.playChordAt(when + b * 21, 4, notes[3], 1)
   }
 
 
@@ -164,23 +164,3 @@ useEffect(()=>{
 }
 
 export default ProgressionShow
-
-{/* <div id="staff" >
-      <SheetMusic 
-      notes={vexNotes}/>
-      </div>
-      
-      <div className="grid-x grid-margin-x">
-        <div className="cell medium-2 formHolder" />
-        {formArray}
-        <form onSubmit={createUserNotes}>
-          <button>Play all four</button>
-        </form>
-      </div>
-      <button onClick={playMelody}>melody</button>
-      <button onClick={playTestInstrument}>Playtest</button>
-
-
-
-      <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
-    </div> */}
