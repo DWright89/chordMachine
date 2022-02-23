@@ -115,7 +115,7 @@ useEffect(()=>{
         <h2>{title}</h2>
     </div>
       <div className="grid-x grid-margin-x">
-        <div className="cell medium-4 songList">
+        <div className="cell medium-4 songList left-side">
           <p>Here are some sections of songs that include these chords:</p>
           {songTiles}
           </div>

@@ -205,7 +205,7 @@ const Midi = (props) => {
         chordName={chordName}/>
       </div>
       <div className="grid-x grid-margin-x">
-        <div className="cell medium-4">
+        <div className="cell medium-4 left-side">
           <ChordLookup 
           chords={chords}/>
         </div>
@@ -247,7 +247,7 @@ const Midi = (props) => {
           />
           </div>
         </div>
-      <MIDISounds ref={ref} appElementName="app" instruments={[3, 4]} />
+      <MIDISounds className="centered" ref={ref} appElementName="app" instruments={[3, 4]} />
     </div>
   );
 };

@@ -5,10 +5,13 @@ const LandingPage = (props) =>{
 
   return(
     <div>
-      <p className="fade-in-text text">Welcome to Chordmachine</p>
-      <p className="fade-in-text-2 text-2">An app for creating and learning about chord progressions</p>
+      <div className="fade-in-text">
 
-      <p className="fade-in-text-2 text-3"><Link to="/chords/new">Get started</Link></p>
+      <p>Welcome to Chordmachine</p>
+      <p>An app for creating and learning about chord progressions</p>
+
+      <p><Link to="/chords/new">Get started</Link></p>
+      </div>
       <img src="https://i.imgur.com/TBVB0eB.jpg"></img>
     </div>
   )
