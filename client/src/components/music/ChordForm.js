@@ -13,6 +13,11 @@ const ChordForm = props =>{
             extension: "none",
             inversion: "root",       }
     })
+
+    const [degreeHover, setDegreeHover] = useState(false)
+    const [extensionHover, setExtensionHover] = useState(false)
+    const [inversionHover, setInversionHover] = useState(false)
+
    const chords = ["I", "ii", "iii", "IV", "V", "vi", "vii"]
 
 
@@ -86,17 +91,41 @@ const handleInversionChange = (event) =>{
 
     
     return(
-    <div className="cell medium-3">
+    <div className="cell medium-3 form-parent">
         <form onSubmit={handleSubmit} >
-            <label>Scale degree:</label>
+            <label
+            onMouseEnter={() => setDegreeHover(true)}
+            onMouseLeave={() => setDegreeHover(false)}
+              >Scale degree:</label>
+               {degreeHover && (
+                <div className="degree-tip">
+                  Which degree of the scale will your chord be built from?
+                </div>
+              )}
         <select onChange={handleDegreeChange}>
        {chordOptions}
        </select>
-       <label>Extensions:</label>
+       <label
+        onMouseEnter={() => setExtensionHover(true)}
+        onMouseLeave={() => setExtensionHover(false)}
+        >Extensions:</label>
+            {extensionHover && (
+                <div className="extension-tip">
+                    Choose an additional note for your chord
+                </div>
+            )}
        <select onChange={handleExtensionChange}>
        {extensionOptions}
        </select>
-       <label>Inversion:</label>
+       <label
+        onMouseEnter={() => setInversionHover(true)}
+        onMouseLeave={() => setInversionHover(false)}
+        >Inversion:</label>
+            {inversionHover && (
+                <div className="inversion-tip">
+                    Choose your inversion (lowest note is 'flipped' to the top!)
+                </div>
+            )}
        <select onChange={handleInversionChange}>
         {inversionOptions}
        </select>

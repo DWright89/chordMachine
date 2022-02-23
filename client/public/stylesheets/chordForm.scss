@@ -1,0 +1,29 @@
+@import "./colors.scss";
+
+.form-parent{
+  position:relative;
+}
+
+.degree-tip{
+  position:absolute;
+  font-size: 2vh;
+  background-color: $medium-blue;
+  color: $not-white;
+  border-radius: 5px;
+}
+
+.extension-tip{
+  position:absolute;
+  font-size: 2vh;
+  background-color: $medium-blue;
+  color: $not-white;
+  border-radius: 5px;
+}
+
+.inversion-tip{
+  position:absolute;
+  font-size: 2vh;
+  background-color: $medium-blue;
+  color: $not-white;
+  border-radius: 5px;
+}

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 const LandingPage = (props) =>{
 
   return(
-    <div>
+    <div className="landing-parent">
       <div className="fade-in-text">
 
       <p>Welcome to Chordmachine</p>

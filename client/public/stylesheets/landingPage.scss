@@ -1,10 +1,15 @@
 @import "./colors.scss";
 
 
+.landing-parent{
+  position: relative;
+}
+
+
 .fade-in-text {
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 25px;
+  font-size: 3vh;
   color: $navy-blue;
   animation: fadeIn linear 3s;
   -webkit-animation: fadeIn linear 3s;
