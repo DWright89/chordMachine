@@ -1,5 +1,6 @@
 # Chordmachine
 #### Made by: [Denny Wright](https://github.com/DWright89)
+#### Available [here](https://chordmachine.herokuapp.com/)
 
 Chordmachine is an app that allows a user to make, see, and hear chords.
 Written as a songwrtiging tool, the app is connected to the [HookTheory API](https://www.hooktheory.com/api/trends/docs) to provide music theory analysis on a user's chords
