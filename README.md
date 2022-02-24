@@ -5,7 +5,9 @@ Chordmachine is an app that allows a user to make, see, and hear chords.
 Written as a songwrtiging tool, the app is connected to the [HookTheory API](https://www.hooktheory.com/api/trends/docs) to provide music theory analysis on a user's chords
 
 Audio is achieved through [MIDI Sounds React](https://github.com/surikov/midi-sounds-react)
+
 Notation rendering is achieved thorugh [VexFlow](https://www.vexflow.com/)
+
 Random name generation is achieved thorgh the [Random Word API](http://random-word-api.herokuapp.com/home)
 
 In the app, users are able to:
