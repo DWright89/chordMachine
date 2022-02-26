@@ -34,7 +34,6 @@ const ChordLookup = (props) =>{
         body: JSON.stringify(payload)
      })
      const body = await response.json()
-     console.log("Set state with this: ", body)
      setResponseState(body)
    }catch(error){
      console.error("Error in Chord Lookup: ", error)

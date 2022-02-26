@@ -7,7 +7,6 @@ dotenv.config()
 const apiKey = process.env.HOOKTHEORY_KEY
 
 theoryRouter.post("/lookup", async (req, res) =>{
-  console.log("Payload on the back, ", req.body)
   try{
     const chords = await hookTheoryClient.queryChords(apiKey, req.body)
     return res.status(200).json(chords)
