@@ -186,7 +186,10 @@ const Midi = (props) => {
     let saveButton = <p>If you want to save these chords, you should <Link to="/user-sessions/new">sign in</Link>
                         or <Link to="/users/new">sign up!</Link></p>
     if(props.user){
-      saveButton = <button onClick={postChords}>Save your chords!</button>
+      saveButton = <form>
+                    <button  className="button" onClick={postChords}>Save your chords!</button>
+                   </form>
+                  
     }
     
 
@@ -226,12 +229,14 @@ const Midi = (props) => {
                 value={chordName}
               />
               <br/>
-            <button className="centered">Play all four</button>
+            <button className="button">Play all four</button>
           </form>
-          <div className="cell small 2">
-            <button onClick={getRandomName}>Get me a random name</button>
+          <div>
+            <form>
+              <button className="button" onClick={getRandomName}>Get me a random name</button>
+            </form>
           </div>
-          <div className="cell small 2">
+          <div>
             {saveButton}
           </div>
           <div className="grid-x grid-margin-x">

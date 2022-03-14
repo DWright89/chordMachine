@@ -15,52 +15,6 @@ const intervals = {
     majorNinth: 14
 }
 
-const majorTriad = {
-    root: [intervals.majorThird, intervals.perfectFifth],
-    first: [intervals.minorThird, intervals.minorSixth],
-    second: [intervals.perfectFourth, intervals.majorSixth]
-}
-
-const minorTriad = {
-    root: [intervals.minorThird, intervals.perfectFifth],
-    first: [intervals.majorThird, intervals.majorSixth],
-    second: [intervals.perfectFourth, intervals.minorSixth]
-}
-
-const dimTriad = {
-    root: [intervals.minorThird, intervals.flatFifth],
-    first:[intervals.minorThird, intervals.majorSixth],
-    second:[intervals.flatFifth, intervals.minorSeventh]
-}
-
-const majorSeventh = {
-    root: [intervals.majorThird, intervals.perfectFifth, intervals.majorSeventh],
-    first: [intervals.minorThird, intervals.perfectFifth, intervals.minorSixth],
-    second: [intervals.majorThird, intervals.perfectFourth, intervals.majorSixth],
-    third: [intervals.minorSecond, intervals.perfectFourth, intervals.minorSixth]
-}
- 
-const minorSeventh = {
-    root: [intervals.minorThird, intervals.perfectFifth, intervals.minorSeventh],
-    first: [intervals.majorThird, intervals.perfectFifth, intervals.majorSixth],
-    second: [intervals.minorThird, intervals.perfectFourth, intervals.minorSixth],
-    third: [intervals.majorSecond, intervals.perfectFourth, intervals.majorSixth]
-}
-
-const majorAdd9 = {
-    root: [intervals.majorThird, intervals.perfectFifth, intervals.majorNinth],
-    first: [intervals.minorThird, intervals.minorSixth, intervals.minorSeventh],
-    second: [intervals.perfectFourth, intervals.perfectFifth, intervals.majorSixth],
-    third: [intervals.majorSecond, intervals.majorThird, intervals.perfectFifth]
-}
-
-const minorAdd9 = {
-    root:[intervals.minorThird, intervals.perfectFifth, intervals.majorNinth],
-    first:[intervals.majorThird, intervals.majorSixth, intervals.minorSeventh],
-    second:[intervals.perfectFourth, intervals.perfectFifth, intervals.minorSixth],
-    third:[intervals.majorSecond, intervals.minorThird, intervals.perfectFifth]
-
-}
 
 
 
@@ -194,4 +148,4 @@ const chordBuilder = (lowest, inversionArray) =>{
     return output
 }
 
- export {intervals, majorTriad, dimTriad, minorTriad, majorSeventh, minorSeventh, majorAdd9, minorAdd9, major, minor, dim, rootLookup, flavorLookup, chordBuilder, chordBuilderTwo}
+ export {intervals, major, minor, dim, rootLookup, flavorLookup, chordBuilder, chordBuilderTwo}

@@ -4,6 +4,8 @@
 @import "../../../public/stylesheets/progressionShow.scss";
 @import "../../../public/stylesheets/landingPage.scss";
 @import "../../../public/stylesheets/chordForm.scss";
+@import "../../../public/stylesheets/midi.scss";
+@import "../../../public/stylesheets/chordLookup.scss";
 @include foundation-everything;
 // place global css here
 *,
@@ -19,6 +21,10 @@ body {
   background-color: $not-white;
   color: $navy-blue;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.button{
+  color: $not-white;
 }
 
 .left-side{

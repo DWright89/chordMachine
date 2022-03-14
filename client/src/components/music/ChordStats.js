@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import nameLookup from "./musicTheory/nameLookup.js"
 
@@ -36,10 +36,7 @@ if(chord.inversion){
   }
 
   stats = `This is a ${note} ${flavor} ${extension} chord ${inversion}`
-
 }
-
-  //debugger
 
 }
   return (
