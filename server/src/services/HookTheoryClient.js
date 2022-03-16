@@ -1,5 +1,10 @@
 import got from "got"
 
+//One method for chords, one method for songs
+//Both check to remove repetetive chord degrees, which will
+//cause an error in the return.
+//both of these functions are only limited to chord progression
+//lengths that the HookTheory API is limited to
 class hookTheoryClient {
   static async queryChords(key, degreeArray){
     const unique = []

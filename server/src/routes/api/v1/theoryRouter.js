@@ -6,6 +6,8 @@ const theoryRouter = new express.Router()
 dotenv.config()
 const apiKey = process.env.HOOKTHEORY_KEY
 
+//this is the endpoint for users querying about some or all of their chords
+//to get information on what their next chord should be
 theoryRouter.post("/lookup", async (req, res) =>{
   try{
     const chords = await hookTheoryClient.queryChords(apiKey, req.body)

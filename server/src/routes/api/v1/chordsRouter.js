@@ -11,12 +11,20 @@ const apiKey = process.env.HOOKTHEORY_KEY
 
 const chordsRouter = new express.Router()
 
+//uses .distinct() to return the first unique name and url fields
+//from the chord table.
+//Runs them through a serializer that only returns the necessary
+//information for generating a list of links to show pages
 chordsRouter.get("/", async (req, res)=>{
   const allChords = await Chord.query().distinct("name", "url")
   const cleanedChords = ChordSerializer.prepareIndex(allChords)
   return res.status(200).json(cleanedChords)
 })
 
+//matches the URL parameters to the database and orders them by the 'order' field
+//which ensures that the chords are rendered and played in the correct order
+//This also contains the API call to HookTheory that returns songs sharing
+//the same chords
 chordsRouter.get("/:id", async (req, res)=>{
   let data = {}
   const id = req.params.id
@@ -28,6 +36,8 @@ chordsRouter.get("/:id", async (req, res)=>{
   return res.status(200).json(data)
 })
 
+//passes user chords into handler functions that prepare them for being entered into the DB
+//uses insertGraph to put all chord objects into the DB in one transaction
 chordsRouter.post("/", async (req, res) =>{
   const body = req.body
   const serializedChords = await ChordSerializer.handleUserChords(body, req.user.id)
