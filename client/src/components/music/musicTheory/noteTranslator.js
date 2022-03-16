@@ -1,3 +1,5 @@
+//used to go between the MIDI integer notes and VexFlow string-notes
+
 const noteTranslator = {
   48: "C/3",
   50: "D/3",

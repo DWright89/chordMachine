@@ -1,3 +1,5 @@
+//objects used to determine the intervals of chords
+
 const intervals = {
     minorSecond: 1,
     majorSecond: 2,
@@ -14,9 +16,6 @@ const intervals = {
     minorNinth: 13,
     majorNinth: 14
 }
-
-
-
 
 const major = {
     "none": {
@@ -92,11 +91,13 @@ const dim = {
     }
 }
 
+//currently limited to C Major
 const rootLookup = (chordDegree) =>{
     const rootNotes = [60, 62, 64, 65, 67, 69, 71]
     return (rootNotes[(chordDegree-1)])
 }
 
+//determines if a chord is major, minor, or diminished based on scale degree
 const flavorLookup = (chordDegree) =>{
     if(chordDegree == 1 || chordDegree ==4 || chordDegree==5){
         return 'major'
@@ -107,6 +108,9 @@ const flavorLookup = (chordDegree) =>{
     }
 }
 
+//handles all the logic of getting the inversion array of a chord
+//repositioning the root if an inversion other than root is used
+//and generating the final array of integers to be fed into the MIDI
 const chordBuilderTwo = (lowest, flavor, extension, inversion) =>{
 
     let inversions 
@@ -134,6 +138,7 @@ const chordBuilderTwo = (lowest, flavor, extension, inversion) =>{
     return noteArray
 }
 
+//Responsible for generating the final array of notes as integers
 const chordBuilder = (lowest, inversionArray) =>{
     
     let output = [lowest-12, lowest]

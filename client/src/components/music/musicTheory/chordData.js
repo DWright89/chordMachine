@@ -1,4 +1,6 @@
 
+//lookup objects for generating the dropdown menu
+    
     const chordData = [
       {
           name: "1",
