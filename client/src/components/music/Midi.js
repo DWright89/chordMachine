@@ -61,7 +61,7 @@ const Midi = (props) => {
     document.querySelectorAll('.vf-stavenote').forEach(e => e.remove());
     setNoteFix(!noteFix)
   }
-
+//plays the user's chord progression
   const playFour = (chordArray) => {
     let when = ref.current.contextTime()
     let b = 0.1
@@ -70,7 +70,7 @@ const Midi = (props) => {
     ref.current.playChordAt(when + b * 14, 4, chordArray[2], 1)
     ref.current.playChordAt(when + b * 21, 4, chordArray[3], 1)
   }
-
+//translates from integer note values to be fed into VexFlow
   const translateIntegerNotes = (chordArray) =>{
     let output = []
     for (const chord of chordArray){
@@ -81,7 +81,7 @@ const Midi = (props) => {
     }
     return output
   }
-
+// used to derive notes from form values and then play all four chords
   const createUserNotes = (event) => {
     event.preventDefault()
     let output = []
@@ -91,7 +91,7 @@ const Midi = (props) => {
     setUserNotes(output)
     playFour(output)
   }
-
+//Reads the initial state of the component and prepares the VexFlow and MIDI notes
   const initializeUserNotes = ()=>{
     let midiNotesArray = []
     
@@ -104,19 +104,19 @@ const Midi = (props) => {
     setVexNotes(vexNotesArray)
   }
 
-
+//Used to play any one chord/note
   const playTestInstrument = (noteArray) => {
     ref.current.playChordNow(4, noteArray, 1.5);
   };
-
+//Allows for one chord at a time to be changed at the top level
   const handleFormChanges = (chordNumber, formData) => {
     setChords({ ...chords, [chordNumber]: formData })
   }
-
+//Handles the user's name for chord progression
   const handleNameChange = (event) =>{
     setChordName(event.currentTarget.value)
   }
-
+//Gets a random name from the backend API
   const getRandomName = async () =>{
     try{
       const response = await fetch("/api/v1/words")
@@ -132,7 +132,8 @@ const Midi = (props) => {
       console.log("There was an error in the random word API: ", error)
     }
   }
-
+//Generates four ChordForms with positions of 1 - 4 to point them at the
+//correct place in MIDI state
   const sequence = [1, 2, 3, 4]
   const formArray = sequence.map((number) => {
     return <ChordForm
@@ -144,7 +145,7 @@ const Midi = (props) => {
   })
 
 
-  
+//packages up user chords, assigning extra properties for the DB and sends them off
   const postChords = async (event) =>{
     event.preventDefault()
     if(chordName === ''){

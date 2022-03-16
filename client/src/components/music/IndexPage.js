@@ -15,7 +15,9 @@ const IndexPage = (props) =>{
       console.error("There was a problem on the index page: ", error)
     }
   }
-
+//generates a list of links to each unique chord progression
+//accomplisned with the Objection .distinct() method to return the first
+//of each 'name' field in the Chords table.
   let list = ''
 
 

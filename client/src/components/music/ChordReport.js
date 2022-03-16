@@ -6,7 +6,8 @@ const ChordReport = (props) =>{
     const percent = Math.round((decimal*100))
     return `${percent}%`
   }
-  
+  //This component is iterated over from the API returns to give statistical feedback
+  //to the user on the chords they queried.
   const generateReport = () =>{
     const percents = props.chords.map((chord)=>{
       return decimalToPercent(chord.probability)

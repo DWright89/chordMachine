@@ -13,11 +13,15 @@ const ChordForm = props =>{
             extension: "none",
             inversion: "root",       }
     })
+//manages an individual chord
 
+//state for tooltips to be displayed/hidden
     const [degreeHover, setDegreeHover] = useState(false)
     const [extensionHover, setExtensionHover] = useState(false)
     const [inversionHover, setInversionHover] = useState(false)
 
+//these three consts handle the logic for generating dropdown fields to generate
+//chords
    const chords = ["I", "ii", "iii", "IV", "V", "vi", "vii"]
 
 
@@ -37,6 +41,10 @@ const ChordForm = props =>{
             </option>        
             ))
         
+
+//three functions for handling degree, extension, and inversion changes
+//the degree function hard-resets the extension and inversion properties
+//to prevent 'bad' note values being sent to VexFlow 
 
 const handleDegreeChange = (event) =>{
     const degree = event.currentTarget.value
@@ -68,7 +76,7 @@ const handleInversionChange = (event) =>{
 }
 
 
-
+//gets MIDI notes from this form's chord and feeds it into playTestInstrument
     const handleSubmit = (event) =>{
         event.preventDefault()
         const chord = menuState.chord

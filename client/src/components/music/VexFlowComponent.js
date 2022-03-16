@@ -5,7 +5,8 @@ const VF = VexFlow.Flow;
 const { Formatter, Renderer, Stave, StaveNote } = VF;
 
 const clefAndTimeWidth = 60;
-
+//mostly taken from the VF tutorial.  Renders SVG of sheet music
+//with some hard-coding on the length and width of the image field
 export function Score({
     staves = [],
     clef = "treble",

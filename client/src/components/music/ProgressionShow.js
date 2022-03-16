@@ -22,7 +22,9 @@ const ProgressionShow = (props) =>{
   const bpm = 120;
   const N = (4 * 60) / bpm;
 
-
+//this is a static version of the MIDI component that contains all of the musical
+//functionality but none of the editing.  This additionally has the pre-prepared
+//API call to show the songs and compositions that contain the displayed chords
   const playOne = (event) =>{
     event.preventDefault()
     ref.current.playChordNow(4, notes[event.currentTarget.value], 1.5)
@@ -68,7 +70,7 @@ const ProgressionShow = (props) =>{
   }
 
   let songTiles = ''
-
+//this is the component that interacts with the returned data from the API
   const generateSongTiles = (songs) =>{
     let output = songs.map((song, index)=>{
       return (

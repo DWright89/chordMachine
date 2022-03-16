@@ -9,6 +9,10 @@ let flavor
 let extension = ''
 let inversion
 let stats = ""
+
+//this entire component turns the chord into strictly letters
+//designed to help people very new to music to translate between notation
+//and the alphabet
 if(props.chord){
 if(chord.degree){
   note = nameLookup[chord.degree]

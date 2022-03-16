@@ -7,7 +7,7 @@ const ChordLookup = (props) =>{
   const [formState, setFormState] = useState(0)
   const [responseState, setResponseState] = useState([])
   
-
+//generates dropdown options
   const dropdownOptions = ["Tell me about the first two",
                            "Tell me about the middle two", 
                            "Tell me about all four"]
@@ -21,7 +21,7 @@ const ChordLookup = (props) =>{
       </option>
     )
   })
-
+//sends the user's selected chords from the frontend through the HookTheoryAPI
   const handleSubmit = async (event) =>{
     event.preventDefault()
     const payload = deriveFormPayload(formState)
@@ -39,7 +39,7 @@ const ChordLookup = (props) =>{
      console.error("Error in Chord Lookup: ", error)
    }
   }
-
+//Grabs the appropriate chord degrees 
   const deriveFormPayload = (formValue) =>{
     if(formValue == 0){
       return [props.chords[1].degree, props.chords[2].degree]
@@ -54,7 +54,7 @@ const ChordLookup = (props) =>{
   const handleChange = (event) =>{
     setFormState(event.currentTarget.value)
   }
-
+//Displays the returns from the API, initialized as nothing
   let chordReport
   if(responseState.length > 1){
     const queriedChords = deriveFormPayload(formState)
