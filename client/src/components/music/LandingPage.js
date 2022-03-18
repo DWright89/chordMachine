@@ -12,7 +12,7 @@ const LandingPage = (props) =>{
 
       <p><Link to="/chords/new">Get started</Link></p>
       </div>
-      <img src="https://i.imgur.com/TBVB0eB.jpg"></img>
+      <img className="piano" src="https://i.imgur.com/TBVB0eB.jpg"></img>
     </div>
   )
 }

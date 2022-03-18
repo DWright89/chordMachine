@@ -1,10 +1,10 @@
 const flavorLookup = (chordDegree) =>{
   if(chordDegree == 1 || chordDegree ==4 || chordDegree==5){
-      return 'major'
+    return 'major'
   } else if(chordDegree == 2|| chordDegree==3 || chordDegree==6){
-      return 'minor'
+    return 'minor'
   } else{
-      return 'dim'
+    return 'dim'
   }
 }
 

@@ -5,6 +5,7 @@ import { Chord } from "../models/index.js"
 
 class ChordSerializer {
 
+  //used for the index page and show pages
   static getDetails (chords) {
     let output = []
     const allowedAttributes = ["userId", "name", "degree", "extension", "inversion"]
@@ -19,6 +20,8 @@ class ChordSerializer {
     return output
   }
 
+  //handles the saving of user chords, checking to see if chords with the same 
+  //name have been provided and ultimately rejecting the post request if so
   static async handleUserChords(chordPayload, currentUserId){
     const existsAlready = await Chord.query().where("url", "=", chordPayload.url)
     if(existsAlready.length > 1){

@@ -21,55 +21,55 @@ const BigChordStats = (props) =>{
   let statList
 
   const generateStats = (chordArray) =>{
-    let output = []
-   for (const [key, value] of Object.entries(chordArray)){
-     if(!value.root){
-       value.root = rootLookup(value.degree)
-     }
-     const integerNotes = chordBuilderTwo(value.root, value.flavor, value.extension, "root")
-     const textNotes = translateIntegerNotesStats(integerNotes).join(', ')
-    const name = nameLookup[value.degree]
-    let extension = ''
-    let inversion = ''
-    let flavor = value.flavor
+      let output = []
+      for (const [key, value] of Object.entries(chordArray)){
+        if(!value.root){
+          value.root = rootLookup(value.degree)
+        }
+      const integerNotes = chordBuilderTwo(value.root, value.flavor, value.extension, "root")
+      const textNotes = translateIntegerNotesStats(integerNotes).join(', ')
+      const name = nameLookup[value.degree]
+      let extension = ''
+      let inversion = ''
+      let flavor = value.flavor
+      
+      if(value.extension !== "none"){
+        extension = value.extension
+      } 
+
+      if(value.extension === "dominant 7"){
+        flavor = ''
+      }
+
+      if(value.extension === "minor 9"){
+        flavor = ''
+      }
+
+      if(value.inversion === 'root'){
+        inversion = "root position"
+      } if (value.inversion === 'first'){
+        inversion = "first inversion"
+      } if (value.inversion === 'second'){
+        inversion = "second inversion"
+      } if (value.inversion === 'third'){
+        inversion = "third inversion"
+      }
     
-    if(value.extension !== "none"){
-      extension = value.extension
-    } 
-
-    if(value.extension === "dominant 7"){
-      flavor = ''
-    }
-
-    if(value.extension === "minor 9"){
-      flavor = ''
-    }
-
-    if(value.inversion === 'root'){
-      inversion = "root position"
-    } if (value.inversion === 'first'){
-      inversion = "first inversion"
-    } if (value.inversion === 'second'){
-      inversion = "second inversion"
-    } if (value.inversion === 'third'){
-      inversion = "third inversion"
-    }
-  
       output.push(<li>{`${name} ${flavor} ${extension} (${textNotes}), ${inversion}`}</li>)
-   }
-   return output
+    }
+    return output
   }
 
 
 
 
-if(chords !==  null){
-  statList = generateStats(chords)
-}
+  if(chords !==  null){
+    statList = generateStats(chords)
+  }
 
-useEffect(()=>{
-  handleChordChange()
-}, [props])
+  useEffect(()=>{
+    handleChordChange()
+  }, [props])
 
   return(
     <div>

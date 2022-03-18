@@ -35,8 +35,8 @@ const App = (props) => {
         <Route exact path="/" component={LandingPage} />
       <Route exact path="/chords/new">
         <Midi user={currentUser} />
-       </Route>
-       <Route exact path="/all" component={IndexPage} />
+      </Route>
+        <Route exact path="/all" component={IndexPage} />
         <Route exact path="/chords/:id" component={ProgressionShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

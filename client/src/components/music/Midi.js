@@ -203,7 +203,7 @@ const Midi = (props) => {
     <div className="app">
       <p className="App-intro"></p>
       <div id="staff" >
-       <SheetMusic 
+        <SheetMusic 
         notes={vexNotes}
         setChordName={setChordName}
         chordName={chordName}/>

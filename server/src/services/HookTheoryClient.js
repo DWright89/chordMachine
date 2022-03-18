@@ -16,7 +16,7 @@ class hookTheoryClient {
     const queryString = unique.join()
     
     const url = "https://api.hooktheory.com/v1/trends/nodes?cp="
-   try{
+    try{
     const response = await got(`${url}${queryString}`, 
     {
       headers: {
@@ -26,13 +26,13 @@ class hookTheoryClient {
     const allChords = JSON.parse(response.body)
     const topThree = allChords.slice(0, 3)
     return topThree
-   }catch(error){
-     return { error }
+    }catch(error){
+    return { error }
    }
   }
 
   static async getSongs(key,chordsFromDatabase){
-   
+
     let chordDegrees = []
     for (const chord of chordsFromDatabase){
       chordDegrees.push(chord.degree)
@@ -47,7 +47,7 @@ class hookTheoryClient {
     
     const queryString = unique.join()
     const url = "https://api.hooktheory.com/v1/trends/songs?cp="
-   
+
     try{
       const response = await got(`${url}${queryString}`, 
     {
